@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Secure Document Viewer</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+        .viewer-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        .viewer-header {
+            text-align: center;
+            border-bottom: 2px solid #2E8B57;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .document-viewer {
+            width: 100%;
+            height: 700px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .controls {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        .btn {
+            padding: 8px 20px;
+            margin: 0 5px;
+            background: #2E8B57;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #246b44;
+        }
+    </style>
+</head>
+<body>
+    <div class="viewer-container">
+        <div class="viewer-header">
+            <h2>OFFICIAL DOCUMENT VIEWER</h2>
+            <p style="color: #666;">Secure View Only - No Deletion Allowed</p>
+        </div>
+        
+        <!-- PDF Viewer -->
+        <iframe 
+            id="pdfViewer"
+            class="document-viewer"
+            src="YOUR_FILE_URL_HERE"
+            title="Document Preview">
+        </iframe>
+        
+        <!-- Alternative: Image Viewer for PNG files -->
+        <!-- <img id="imageViewer" class="document-viewer" src="image.png" alt="Document"> -->
+        
+        <div class="controls">
+            <button class="btn" onclick="window.print()">Print</button>
+            <button class="btn" onclick="zoomIn()">Zoom In</button>
+            <button class="btn" onclick="zoomOut()">Zoom Out</button>
+            <button class="btn" onclick="window.close()">Close</button>
+            <!-- NO DELETE BUTTON HERE -->
+        </div>
+    </div>
+
+    <script>
+        // Disable right-click (prevents save as)
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert('Right-click is disabled for security.');
+        });
+        
+        // Disable keyboard shortcuts for save/print
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+S (Save), Ctrl+P (Print - we'll allow this)
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                alert('Saving is disabled.');
+            }
+        });
+        
+        let zoomLevel = 1;
+        
+        function zoomIn() {
+            zoomLevel += 0.1;
+            applyZoom();
+        }
+        
+        function zoomOut() {
+            zoomLevel = Math.max(0.5, zoomLevel - 0.1);
+            applyZoom();
+        }
+        
+        function applyZoom() {
+            const iframe = document.getElementById('pdfViewer');
+            iframe.style.transform = `scale(${zoomLevel})`;
+            iframe.style.transformOrigin = 'top left';
+        }
+    </script>
+</body>
+</html>
