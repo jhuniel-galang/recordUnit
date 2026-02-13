@@ -28,7 +28,9 @@ $result = $conn->query("
     <th>Remarks</th>
     <th>Uploaded By</th>
     <th>Date</th>
+    <th>Action</th>
 </tr>
+
 
 <?php while ($row = $result->fetch_assoc()): ?>
 <tr>
@@ -38,8 +40,16 @@ $result = $conn->query("
     <td><?= htmlspecialchars($row['remarks']) ?></td>
     <td><?= htmlspecialchars($row['uploader_name']) ?></td>
     <td><?= $row['uploaded_at'] ?></td>
+    <td>
+        <a href="delete_permanent.php?id=<?= $row['id'] ?>"
+           onclick="return confirm('This will permanently delete the file. Continue?')"
+           style="color:red; text-decoration:none;">
+           Delete Permanently
+        </a>
+    </td>
 </tr>
 <?php endwhile; ?>
+
 </table>
 </div>
 </div>

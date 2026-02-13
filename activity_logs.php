@@ -869,6 +869,9 @@ $unique_users = $conn->query("SELECT COUNT(DISTINCT user_id) as count FROM activ
                     <?php endif; ?>
                 <?php endfor; ?>
                 
+
+
+                
                 <?php if ($page < $totalPages): ?>
                     <a href="?<?= http_build_query(array_merge($_GET, ['page' => $page + 1])) ?>" class="page-link">
                         <i class="fas fa-angle-right"></i>
