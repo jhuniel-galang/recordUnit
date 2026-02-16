@@ -1196,8 +1196,7 @@ function formatFileSize($bytes) {
 
         // Preview Document
         function previewDocument(filePath, fileName) {
-            // You can implement your secure PDF/image viewer here
-            // For now, open in new tab
+
             window.open(filePath, '_blank');
         }
 
@@ -1210,7 +1209,7 @@ function formatFileSize($bytes) {
 
         // Add smooth animations
         document.addEventListener('DOMContentLoaded', function() {
-            // Animate stats cards on load
+
             const stats = document.querySelectorAll('.stat-card');
             stats.forEach((stat, index) => {
                 setTimeout(() => {
