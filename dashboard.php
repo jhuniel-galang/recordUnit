@@ -848,7 +848,7 @@ if (isAdmin()) {
                             </td>
                             <?php endif; ?>
                             <td>
-                                <a href="<?= $row['file_path'] ?>" target="_blank" class="file-link">
+                                <a href="preview.php?id=<?= $row['id'] ?>" target="_blank" class="file-link">
                                     <i class="fas fa-file"></i>
                                     <?= $row['file_name'] ?>
                                 </a>
